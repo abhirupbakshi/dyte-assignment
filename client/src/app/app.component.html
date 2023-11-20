@@ -1,0 +1,10 @@
+<p>
+  <mat-toolbar class="toolbar">
+    <span class="app-name"><a href="/">Logs</a></span>
+    <button *ngIf="loggedIn" mat-raised-button color="primary" (click)="handleLogout($event)"> Logout </button>
+  </mat-toolbar>
+</p>
+
+<div class="main">
+  <router-outlet></router-outlet>
+</div>

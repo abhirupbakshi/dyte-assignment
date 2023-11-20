@@ -1,0 +1,35 @@
+.search {
+  display: block;
+  width: 30%;
+  margin: auto;
+}
+
+h1 {
+  font-size: xx-large;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1.3em;
+}
+
+.range {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.properties {
+  margin: 0em 5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.properties > * {
+  margin: 0 0.5em;
+}
+
+.submit-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: 10em;
+}

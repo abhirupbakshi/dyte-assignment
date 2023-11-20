@@ -1,0 +1,83 @@
+<form (submit)="onSubmit($event)">
+
+  <mat-form-field class="search">
+    <mat-label>Search</mat-label>
+    <input matInput [formControl]="searchStrFc">
+  </mat-form-field>
+
+  <h1>Filter by datetime range:</h1>
+
+  <div class="range">
+    <dp-date-picker
+      [config]="datePickerConfig"
+      [formControl]="timeRange.past"
+      mode="daytime"
+      theme="dp-material"
+      placeholder="Past timestamp"
+    ></dp-date-picker>
+
+    <dp-date-picker
+      [config]="datePickerConfig"
+      [formControl]="timeRange.future"
+      mode="daytime"
+      theme="dp-material"
+      placeholder="Future timestamp"
+    ></dp-date-picker>
+  </div>
+
+
+  <br>
+  <h1>Filter by log properties:</h1>
+
+  <div class="properties">
+    <mat-form-field>
+      <mat-label>UUID</mat-label>
+      <input matInput [formControl]="logForm.uuid">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Level</mat-label>
+      <input matInput [formControl]="logForm.level">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Message</mat-label>
+      <input matInput [formControl]="logForm.message">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Resource Id</mat-label>
+      <input matInput [formControl]="logForm.resourceId">
+    </mat-form-field>
+
+    <dp-date-picker
+      [config]="datePickerConfig"
+      [formControl]="logForm.timestamp"
+      mode="daytime"
+      theme="dp-material"
+      placeholder="Timestamp"
+    ></dp-date-picker>
+
+    <mat-form-field>
+      <mat-label>Trace Id</mat-label>
+      <input matInput [formControl]="logForm.traceId">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Span Id</mat-label>
+      <input matInput [formControl]="logForm.spanId">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Commit</mat-label>
+      <input matInput [formControl]="logForm.commit">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Parent Resource Id</mat-label>
+      <input matInput [formControl]="logForm.metadata_parentResourceId">
+    </mat-form-field>
+  </div>
+
+  <button class="submit-btn" type="submit" mat-raised-button color="primary">Submit</button>
+</form>

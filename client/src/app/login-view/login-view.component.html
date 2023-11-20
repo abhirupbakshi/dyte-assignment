@@ -1,0 +1,26 @@
+<div *ngIf="!loggedIn">
+
+  <h1>Login</h1>
+
+  <form>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Username</mat-label>
+      <input type="text" matInput [formControl]="username">
+      <mat-error *ngIf="username.hasError('required')">Username is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput [formControl]="password">
+      <mat-error *ngIf="password.hasError('required')">Password is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <button class="submit-btn" type="submit" mat-raised-button color="primary" (click)="onSubmit($event)">Submit</button>
+
+    <p *ngIf="credentials" class="wrong-cred-msg">Wrong Credential</p>
+  </form>
+
+</div>
