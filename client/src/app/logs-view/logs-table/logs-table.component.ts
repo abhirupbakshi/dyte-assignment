@@ -68,6 +68,9 @@ export class LogsTableComponent implements AfterViewInit {
     if (this.searchPredicate) {
       o.search = this.searchPredicate;
     }
+    if (o.timestamp) {
+      o.timestamp = DateTime.fromJSDate(o.timestamp).toUTC().toString();
+    }
     if (o.metadata_parentResourceId) {
       let v = o.metadata_parentResourceId;
       delete o.metadata_parentResourceId;
