@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,8 +18,9 @@ import { PredicateService } from '../../service/predicate.service';
   templateUrl: './logs-table.component.html',
   styleUrls: ['./logs-table.component.css']
 })
-export class LogsTableComponent implements AfterViewInit {
+export class LogsTableComponent implements AfterViewInit, OnDestroy {
 
+  pollIntervalId: any;
   propertyPredicates: any;
   timestampRangePredicates?: Date[] | null;
   searchPredicate?: string;
@@ -104,7 +105,7 @@ export class LogsTableComponent implements AfterViewInit {
       return;
     }
 
-    this.logService.pollLogIngestion(
+    this.pollIntervalId = this.logService.pollLogIngestion(
       Constant.POLL_FREQUENCY,
       (time) => {
         if (!this.lastFetched || (time && (time.getTime() - this.lastFetched.getTime() > 0))) {
@@ -121,6 +122,12 @@ export class LogsTableComponent implements AfterViewInit {
       this.timestampRangePredicates = p.range;
       this.showLogs();
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.pollIntervalId) {
+      clearInterval(this.pollIntervalId);
+    }
   }
 
   openMetadataDialog(event: Event, metadata: Metadata): void {

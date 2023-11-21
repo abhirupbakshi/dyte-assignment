@@ -109,8 +109,8 @@ export class LogService {
     };
   }
 
-  async pollLogIngestion(ms: number, success: (timestamp: Date | null) => void, error?: (res: Response | null) => void) {
-    setInterval(async () => {
+  pollLogIngestion(ms: number, success: (timestamp: Date | null) => void, error?: (res: Response | null) => void) {
+    return setInterval(async () => {
       let response = await fetch(`${Constant.BASE_URL}/last-ingested`);
       if (!response.ok) {
         if (error) {
